@@ -30,10 +30,6 @@
       gap: 15px;
     }
 
-    .favorites img {
-      width: 150px;
-    }
-
     .marB20 {
       margin-bottom: 20px;
     }
@@ -53,42 +49,60 @@
     <script type="text/babel">
       console.log("야옹");
 
-      const title_cat = <h3>1번째 고양이</h3>;
-      const form_tag =(
-      <form class="marB20">
-      <input type="text" name="name" placeholder="영어 대사를 입력해주세요" />
-      <button type="submit">생성</button>
-      </form>
-      );
-      const catItem = (
+  
+      const Title = (props) =>{
+        return(
+          <h3>{props.children}</h3>
+        )
+      }
+      const Form_tag =(props) => 
+        (
+          <form class="marB20">
+          <input type="text" name="name" placeholder="영어 대사를 입력해주세요" />
+          <button type="submit">생성</button>
+          </form>
+        )
+      
+      
+    
+    function CatItem(props){
+      return(
         <li>
-          <img src="https://cataas.com/cat/60b73094e04e18001194a309/says/react" />
+          <img src={props.img} style={{width:"150px"}} />
         </li>
-      );
-
-      const favorites = (
-        <ul class="favorites">
-          {catItem}
-          {catItem}
-          {catItem}
+        );
+    }
+    function Favorites() {
+        return(
+        <ul className="favorites">
+          <CatItem img="https://cataas.com//cat/5e9970351b7a400011744233/says/inflearn" />
+          <CatItem img="https://cataas.com/cat/595f280b557291a9750ebf65/says/JavaScript" /> 
         </ul>
-      );
-      const mainCard = (
-        <div class="main-card">
+        );
+      }
+      
+      // es6문법 적용 props사용하지 않고 바로 적용가능
+      const MainCard = ({img}) => {
+        return(
+        <div className="main-card">
           <img
-            src="https://cataas.com/cat/60b73094e04e18001194a309/says/react"
+            src={img}
             alt="고양이"
             width="400"
           />
           <button>🤍</button>
         </div>
       );
+      }
+
+
       const app = (
         <div>
-          {title_cat}
-          {form_tag}
-          {mainCard}
-          {favorites}
+          <Title>1번째 고양이</Title>
+          
+          <Form_tag/>
+          <MainCard img="https://cataas.com/cat/60b73094e04e18001194a309/says/react"/>
+          <Favorites/>
         </div>
       );
 
