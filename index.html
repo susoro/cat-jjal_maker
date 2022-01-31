@@ -50,18 +50,28 @@
       console.log("야옹");
 
   
-      const Title = (props) =>{
-        return(
-          <h3>{props.children}</h3>
-        )
+      const Title = (props) => {
+        return
+          <h3>{props.children}</h3>;
+        };
+      
+      const Form_tag = () => {
+        function hanleFormSubmit(event) {
+        event.preventDefault();
+        console.log("폼 전송됨");
       }
-      const Form_tag =(props) => 
-        (
-          <form class="marB20">
-          <input type="text" name="name" placeholder="영어 대사를 입력해주세요" />
-          <button type="submit">생성</button>
+      return (
+          <form onSubmit={hanleFormSubmit} class="marB20">
+            <input 
+              type="text"
+              name="name" 
+              placeholder="영어 대사를 입력해주세요" />
+            <button type="submit">생성</button>
           </form>
-        )
+        );
+      };
+      
+        
       
       
     
@@ -83,6 +93,14 @@
       
       // es6문법 적용 props사용하지 않고 바로 적용가능
       const MainCard = ({img}) => {
+
+        function handleHeartClick() {
+          console.log("하트 찜꽁");
+        }
+
+        function handleHeartMouseOver() {
+          console.log("스쳐지나감");
+        }
         return(
         <div className="main-card">
           <img
@@ -90,7 +108,8 @@
             alt="고양이"
             width="400"
           />
-          <button>🤍</button>
+          <button onClick={handleHeartClick} 
+                  onMouseOver={handleHeartMouseOver}>🤍</button>
         </div>
       );
       }
@@ -98,8 +117,7 @@
 
       const app = (
         <div>
-          <Title>1번째 고양이</Title>
-          
+          <Title>1번째 고양이</Title> 
           <Form_tag/>
           <MainCard img="https://cataas.com/cat/60b73094e04e18001194a309/says/react"/>
           <Favorites/>
